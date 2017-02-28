@@ -2,13 +2,16 @@ import React from 'react'
 
 export const NewsList = (props) =>{
   return (
-    <div>
-          <li key={item.objectID}><a href={item.url} target="_blank">{item.title}</a></li>
+    <div className="details">
+        <ul>
+            {props.news.map((item) => {
+                return (
+                    <li key={item.objectID}>
+                        <a href={item.url} target="_blank">{item.title}</a>
+                    </li>
+                )
+            })}
+        </ul>
     </div>
   )
-}
-
-
-NewsList.propTypes = {
-  todos: React.PropTypes.array.isRequired
 }

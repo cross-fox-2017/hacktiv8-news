@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {SearchNews} from './components/Search'
+import {NewsList} from './components/NewsList'
+
 
 // const hasil = [
 //     {
@@ -42,6 +44,8 @@ class App extends Component {
         });
     }
     render() {
+      //Catatan
+
       //release 1, isi dari <ul>
       // {this.state.news.filter((data) => {
       //     return data.title.toLowerCase().match(`${this.state.searchNews}`.toLowerCase())
@@ -52,6 +56,16 @@ class App extends Component {
       //         </li>
       //     )
       // })}
+
+      /*
+      Catatan :
+      -SearchNews akan mengirimkan handleChange ke dan akan diterima dengan di indentifikasi sebagai props,
+       dan kemudian akan dipanggil di Search.js mengan props.handleChange
+
+       - Setelah data dikirim dan diterima untuk menampilkan input search, kemudian akan memanggil fungsi this.handleChange.bind(this)
+         fungsi tersebut akan menerima data input dan kemudian data input akan di proses untuk mencari data dari root api yang sudah tersedia
+      */
+
         return (
             <div className="App">
                 <div className="App-header">
@@ -60,17 +74,8 @@ class App extends Component {
                 </div>
                 <br></br>
                 <SearchNews handleChange={this.handleChange.bind(this)}/>
-                <div className="details">
-                    <ul>
-                        {this.state.news.map((item) => {
-                            return (
-                                <li key={item.objectID}>
-                                    <a href={item.url} target="_blank">{item.title}</a>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </div>
+                <NewsList news={this.state.news} />
+
             </div>
         );
     }
