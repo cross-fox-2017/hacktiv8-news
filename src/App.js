@@ -27,17 +27,21 @@ class App extends Component {
           objectId: 1
         }
       ],
-      currentSearch: ''
+      currentSearch: '',
+      hackerNewsList: []
     }
   }
 
   componentDidMount () {
-    fetch(`https://hn.algolia.com/api/v1/search?query=${}`)
+    const that = this
+    fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.currentSearch}`)
       .then(function (response) {
         return response.json()
       })
       .then(function (data) {
-        console.log(data)
+        that.setState({
+          hackerNewsList: data.hits
+        })
       })
   }
 
@@ -58,7 +62,7 @@ class App extends Component {
         <Search handleChange={this.handleChange.bind(this)} />
         <ul className='center'>
           {this.state.data
-             .filter(item => new RegExp(this.state.currentSearch).test(item.title))
+             .filter(item => new RegExp(this.state.currentSearch, 'i').test(item.title))
              .map((item, index) => {
                return (
                  <li key={index}>
@@ -69,7 +73,20 @@ class App extends Component {
                )
              })}
         </ul>
-        
+        <h1>Hacker News List</h1>
+        <ul className='center'>
+          {this.state.hackerNewsList
+             .filter(item => new RegExp(this.state.currentSearch, 'i').test(item.title))
+             .map((item, index) => {
+               return (
+                 <li key={index}>
+                   <a href={item.url} target='_blank'>
+                     {item.title}
+                   </a>
+                 </li>
+               )
+             })}
+        </ul>
       </div>
     )
   }
