@@ -1,13 +1,21 @@
 import React from 'react'
 
 const styles = {
-  width: '50%'
+  width: '30%',
+  padding: '0px 10px'
 }
 
 export const DataSearch = (props) => {
   return (
     <form>
-      <input style={styles} type='text' onChange={props.handleChange} />
+      <label>
+        Search:
+      </label>
+      <input
+        style={styles}
+        value={props.searchKey}
+        type='text'
+        onChange={props.handleChange} />
     </form>
   )
 }
