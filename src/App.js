@@ -15,6 +15,7 @@ class App extends Component {
       news: [],
       searchKey: ''
     }
+  // this.handleChange = this.handleChange.bind(this) --> supaya ga perlu bind di luar
   }
 
   handleChange (event) {
