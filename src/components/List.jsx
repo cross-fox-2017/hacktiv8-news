@@ -1,6 +1,6 @@
 import React from 'react'
 
-const List = (props) => {
+export const List = (props) => {
   return (
     <span>
       {
@@ -17,5 +17,3 @@ const List = (props) => {
     </span>
   )
 }
-
-export default List
