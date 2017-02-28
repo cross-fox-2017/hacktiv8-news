@@ -16,5 +16,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": {
+      "rules": {
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+      }
+    }
   }
 }
