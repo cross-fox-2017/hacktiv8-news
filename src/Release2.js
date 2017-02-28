@@ -10,6 +10,7 @@ const doSearch = (props) => {
         <a href={item.url} target='_blank'>
           {item.title}
         </a>
+        <small>{item.author}</small>
       </li>
     )
   })
