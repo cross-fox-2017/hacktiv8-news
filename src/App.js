@@ -20,11 +20,12 @@ class App extends Component {
 
   fetchNews (searchQuery) {
     const that = this
-    fetch(`https://hn.algolia.com/api/v1/search?query=${searchQuery}`)
+    fetch(`https://hn.algolia.com/api/v1/search?query=${encodeURI(searchQuery)}`)
       .then(function (response) {
         return response.json()
       })
       .then(function (data) {
+        console.log(data.hits)
         that.setState({
           hackerNewsList: data.hits
         })
@@ -49,7 +50,8 @@ class App extends Component {
         <Search handleChange={this.handleChange.bind(this)} />
         <ul className='center'>
           {this.state.hackerNewsList
-             .filter(item => new RegExp(this.state.currentSearch, 'i').test(item.title))
+             .filter(item => {
+               return item.title !== '' && item.title !== null})
              .map((item, index) => {
                return (
                  <li key={index}>
