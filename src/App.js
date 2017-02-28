@@ -29,13 +29,12 @@ class App extends Component {
   }
 
   fetchNews (searchQuery) {
-    const that = this
     fetch(`https://hn.algolia.com/api/v1/search?query=${encodeURI(searchQuery)}`)
-      .then(function (response) {
+      .then((response) => {
         return response.json()
       })
-      .then(function (resp) {
-        that.setState({
+      .then((resp) => {
+        this.setState({
           news: resp.hits
         })
       })
