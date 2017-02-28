@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import {NewsList} from './components';
+
 const data = [
   {
     title: 'React',
@@ -19,20 +21,16 @@ const data = [
   }
 ]
 class App extends Component {
-
+  constructor(){
+    super()
+    this.state={
+      link: data
+    }
+  }
   render() {
+    console.log(this.state.link);
     return (
-      <ul>
-        {
-          data.map((item,index)=>{
-            return(
-              <li key={index} >
-                <a href={item.url} target="_blank">{item.title}</a>
-              </li>
-            )
-          })
-        }
-      </ul>
+      <NewsList links={this.state.link}/>
     );
   }
 }
