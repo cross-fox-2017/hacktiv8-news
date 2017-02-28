@@ -54,6 +54,9 @@ class App extends Component {
           data : data.hits
         })
       })
+      .catch(function(err){
+        throw err
+      })
   }
   render() {
     return (

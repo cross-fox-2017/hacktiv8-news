@@ -18,11 +18,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": {
-      "rules": {
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error",
-      }
+    "extends": "standard",
+    "rules": {
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error"
     }
   }
 }
