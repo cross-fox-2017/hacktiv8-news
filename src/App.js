@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {List} from './components/List.js'
 
 const data = [
   {
@@ -10,16 +11,15 @@ const data = [
     url: 'https://github.io/reactjs/redux'
   }
 ]
+
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {data}
+  }
   render() {
     return (
-      <ul>
-        {data.map((item,index) => {
-          return (
-            <li key={index}><a href={item.url} target="_blank">{item.title}</a></li>
-          )
-        })}
-      </ul>
+      <List data={this.state.data}/>
     );
   }
 }
