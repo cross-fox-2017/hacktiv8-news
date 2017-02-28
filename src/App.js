@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import {List, Search} from './components/index.jsx'
 
+
+
 class App extends Component {
   constructor () {
     super()
@@ -28,6 +30,26 @@ class App extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
   }
+  componentWillMount() {
+    console.log('will');
+    const appThis = this
+    fetch('http://hn.algolia.com/api/v1/search?query=react')
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(data) {
+    // console.log(data);
+    setTimeout(() => {
+      appThis.setState({
+      datas: data.hits
+    })}, 3000)
+
+
+    });
+  }
+  componentDidMount() {
+    console.log('did');
+  }
 
   handleChange (e) {
     this.setState({
@@ -36,6 +58,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('render');
     return (
       <div className="App">
         <div className="App-header">
