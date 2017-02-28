@@ -24,7 +24,7 @@ const emptyList = () => {
 export const List = (props) => {
   console.log(props.datas.length);
   return (
-    props.datas.length > 3 ? showList(props) : emptyList()
+    props.datas.length > 0 ? showList(props) : emptyList()
 
   )
 }

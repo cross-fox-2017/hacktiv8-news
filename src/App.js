@@ -42,7 +42,7 @@ class App extends Component {
     setTimeout(() => {
       appThis.setState({
       datas: data.hits
-    })}, 3000)
+    })}, 0)
 
 
     });
@@ -68,7 +68,8 @@ class App extends Component {
         <h3>Search</h3>
         <Search handles={this.handleChange} />
         <List datas={this.state.datas.filter(data => {
-            return data.title.toLowerCase().match(this.state.searchKeyword.toLowerCase())
+            // console.log(data.title.toLowerCase());
+            return data.title.toLowerCase().indexOf(this.state.searchKeyword.toLowerCase()) !== -1
           })
         } />
       </div>
