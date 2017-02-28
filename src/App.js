@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from './List'
 
 const data = [
   {
@@ -20,16 +21,16 @@ const data = [
 ]
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      data
+    }
+  }
+
   render(){
     return(
-      <ul>
-        { data.map( (item) => {
-            return(
-              <li><a href={ item.url }>{item.title}</a></li>
-            )
-          })
-        }
-      </ul>
+      <List data={ this.state.data }/>
     )
   }
 }
