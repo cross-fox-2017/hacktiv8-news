@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import logo from './logo.svg';
 import './App.css';
 import List from './List.jsx'
 
@@ -22,14 +23,33 @@ class App extends Component {
               points: 5,
               objectID: 1
           }
-      ]
+      ],
+      searchKeyword: ''
     }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange (e) {
+    this.setState({
+      searchKeyword: e.target.value
+    })
   }
 
   render() {
     return (
-      <div>
-        <List datas={this.state.datas} />
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Hacktiv8 News</h2>
+        </div>
+        <h3>Search</h3>
+        <form>
+          <input onChange={this.handleChange} type='text'></input>
+        </form>
+        <List datas={this.state.datas.filter(data => {
+            return data.title.toLowerCase().match(this.state.searchKeyword.toLowerCase())
+          })
+        } />
       </div>
     )
   }

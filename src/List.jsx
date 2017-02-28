@@ -1,21 +1,20 @@
 import React from 'react'
 
 const List = (props) => {
-  // console.log(props.datas);
   return (
-    <ul>
+    <span>
       {
         props.datas.map((data, index) => {
           return(
-            <li key={index}>
+            <p key={index}>
               <a href={data.url} target="_blank">
                 {data.title}
               </a>
-            </li>
+            </p>
           )
         })
       }
-    </ul>
+    </span>
   )
 }
 
