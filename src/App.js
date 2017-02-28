@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { List } from './List'
+import { List } from './List';
+import { Form } from './Form';
 
 const data = [
   {
@@ -24,13 +25,32 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      data
+      data,
+      search : ''
     }
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  searchTitle (e) {
+    this.setState({
+      search : e.target.value
+    })
   }
 
   render(){
+
+    // if(search > 0){
+    //   var libraries = data.filter( (l) => {
+    //     return l.title.toLowerCase().match(search)
+    //   })
+    // }
+
     return(
-      <List data={ this.state.data }/>
+      <div>
+        <Form searchTitle={this.searchTitle.bind(this)} search={this.state.handleChange} />
+        <List data={this.state.data.filter( result => result.title.toLowerCase().match(this.state.search.toLowerCase()))} />
+      </div>
     )
   }
 }
