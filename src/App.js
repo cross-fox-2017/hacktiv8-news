@@ -33,13 +33,19 @@ class App extends Component {
     this.setState({
       searchLink: event.target.value
     })
+    fetch(`http://hn.algolia.com/api/v1/search?query=${event.target.value}`)
+    .then(response => response.json()).then(data =>
+      this.setState({
+        link : data.hits
+      })
+    )
   }
+
   render() {
-    console.log(this.state.link);
     return (
       <div>
         <NewsForm handleChange={this.handleChange.bind(this)} value={this.state.searchLink}/>
-        <NewsList links={this.state.link.filter((x)=>{return x.title.toLowerCase().match(this.state.searchLink.toLowerCase())})}/>
+        <NewsList links={this.state.link.filter((x)=>{return (x.title===null ? '' : x.title).match(new RegExp(this.state.searchLink,'i'))})}/>
       </div>
     );
   }
