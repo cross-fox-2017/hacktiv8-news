@@ -9,7 +9,7 @@ export class NewsList extends React.Component{
       <ul>
         {this.props.list.map((item)=>{
           return (
-              <li key={item.id}>
+              <li key={`${item.objectID}`}>
                 <a href={item.url} target="_blank">{item.title}</a>
               </li>
             )

@@ -21,13 +21,14 @@ class App extends Component {
           id: 1
         }
       ],
-      search: '.'
+      search: 'react'
     }
     this.handleForm = this.handleForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   handleForm(event){
     event.preventDefault()
+    this.letFetch()
   }
   handleChange(event){
     this.setState({
@@ -37,6 +38,22 @@ class App extends Component {
   cekSearch(item){
     let cut = new RegExp(`${this.state.search}`, 'i')
     return cut.test(item)
+  }
+  componentDidMount(){
+    this.letFetch()
+  }
+  letFetch(){
+    const that = this
+    let uri = encodeURI(this.state.search)
+    fetch(`https://hn.algolia.com/api/v1/search?query=${uri}`)
+      .then(function(response) {
+        return response.json()
+      })
+      .then(function(data){
+        that.setState({
+          data : data.hits
+        })
+      })
   }
   render() {
     return (
