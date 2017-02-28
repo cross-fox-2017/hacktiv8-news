@@ -4,7 +4,7 @@ import './App.css';
 
 const data = [
   {
-    title: 'React',
+    title: 'React JS',
     url: 'https://facebook.github.io/react',
     author: 'Jordan Walke',
     num_comments: 3,
@@ -21,6 +21,12 @@ const data = [
   }
 ]
 class App extends Component {
+    constructor(){
+      super()
+      this.state = {
+        news: data
+      }
+    }
     render() {
         return (
             <div className="App">
@@ -30,7 +36,7 @@ class App extends Component {
                 </div>
                 <div className="details">
                     <ul>
-                        {data.map((item) => {
+                        {this.state.news.map((item) => {
                             return (
                                 <li key={item.objectID}><a href={item.url} target="_blank">{item.title}</a></li>
                             )
