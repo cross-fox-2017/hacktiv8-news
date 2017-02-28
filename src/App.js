@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {SearchNews} from './components/Search'
 
 const data = [
   {
@@ -24,8 +25,14 @@ class App extends Component {
     constructor(){
       super()
       this.state = {
-        news: data
+        news: data,
+        searchNews: ''
       }
+    }
+    handleChange(e){
+      this.setState({
+        searchNews: e.target.value
+      })
     }
     render() {
         return (
@@ -35,8 +42,12 @@ class App extends Component {
                     <h2>Welcome to Hacktiv8 News</h2>
                 </div>
                 <div className="details">
+                    <SearchNews handleChange={this.handleChange.bind(this)} />
+                    <a>{this.state.searchNews}</a>
                     <ul>
-                        {this.state.news.map((item) => {
+                        {this.state.news.filter((data)=> {
+                          return data.title.toLowerCase().match(`${this.state.searchNews}`.toLowerCase())
+                        }).map((item) => {
                             return (
                                 <li key={item.objectID}><a href={item.url} target="_blank">{item.title}</a></li>
                             )
